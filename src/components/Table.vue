@@ -57,17 +57,19 @@
         class="vgt-selection-info-row clearfix"
         :class="selectionInfoClass"
       >
-        {{selectionInfo}}
-        <a
-          href=""
-          @click.prevent="unselectAllInternal(true)"
-        >
-          {{clearSelectionText}}
-        </a>
-        <div class="vgt-selection-info-row__actions vgt-pull-right">
-          <slot name="selected-row-actions">
-          </slot>
-        </div>
+        <slot name="selection-info" v-bind="{selectedRowCount, selectionInfo,clearSelectionText,unselectAllInternal}">
+          {{selectionInfo}}
+          <a
+            href=""
+            @click.prevent="unselectAllInternal(true)"
+          >
+            {{clearSelectionText}}
+          </a>
+        </slot>
+          <div class="vgt-selection-info-row__actions vgt-pull-right">
+            <slot name="selected-row-actions">
+            </slot>
+          </div>
       </div>
       <div class="vgt-fixed-header">
         <table
